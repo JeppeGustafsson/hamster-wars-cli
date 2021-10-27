@@ -16,7 +16,7 @@ const TopFiveWinners = require('../routes/topFiveWinners.js');
 const TopFiveLosers = require('../routes/topFiveLosers.js');
 const DeleteOneMatch = require('../routes/deleteOneMatch.js');
 const cors = require('cors');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3002;
 
 //middlewares
 app.use(cors());
@@ -41,7 +41,7 @@ app.use(DeleteOneMatch);
 app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
-app.use(express.static('static'));
+app.use(express.static('public'));
 //app.use(express.static('../../builds/build')); använd för server side rendering
 
 //Start server

@@ -1,0 +1,12 @@
+.HamsterWrapper {
+    width: 100%;
+    max-width: 350px;
+    margin: 0.25rem;
+}
+
+.HamsterWrapper :global(img) {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}

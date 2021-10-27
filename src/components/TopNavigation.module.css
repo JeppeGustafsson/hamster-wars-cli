@@ -1,0 +1,21 @@
+.TopNavigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    height: 70px;
+}
+
+.TopNavigation :global(a) {
+    text-decoration: none;
+    padding: 0 1rem;
+    margin: 0 0.2rem;
+    font-family: Helvetica;
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    color: #2b2b2b;
+}
+
+.TopNavigation :global(img) {
+    width: 45px;
+}
