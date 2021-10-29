@@ -4,6 +4,7 @@ import axios from 'axios';
 import HamsterModel from './models/Hamster';
 import TopNavigation from './components/TopNavigation';
 import Hamster from './components/Hamster';
+import GameWrapper from './components/GameWrapper';
 import HamsterLogo from './images/hamster-logo.png';
 import './App.css';
 
@@ -19,7 +20,7 @@ function App() {
   const [topWinners, setTopWinners] = useState<HamsterModel[]>([]);
   const [topLosers, setTopLosers] = useState<HamsterModel[]>([]);
 
-  const randCutestNum = Math.floor(Math.random() * cutest.length);
+  const randCutestNum: number = Math.floor(Math.random() * cutest.length);
   const randomCutestHamster: HamsterModel = {
     id: cutest[randCutestNum]?.id,
     wins: cutest[randCutestNum]?.wins,
@@ -81,7 +82,7 @@ function App() {
             </section>
           </Route>
           <Route path="/game">
-
+            <GameWrapper data={all} />
           </Route>
           <Route path="/gallery">
             <section className="inner-wrapper">

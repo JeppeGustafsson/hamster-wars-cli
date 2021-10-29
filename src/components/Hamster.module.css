@@ -2,6 +2,27 @@
     width: 100%;
     max-width: 350px;
     margin: 0.25rem;
+    pointer-events: none;
+}
+
+.Overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+}
+
+:global(.winner) .Overlay {
+    background-color: rgba(37, 202, 15, 0.7);
+}
+
+:global(.loser) .Overlay {
+    background-color: rgba(202, 15, 15, 0.7);
 }
 
 .HamsterWrapper :global(img) {
@@ -9,4 +30,83 @@
     height: 300px;
     object-fit: cover;
     object-position: center;
+}
+
+.Modal {
+    opacity: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    z-index: 2;
+}
+
+.Modal:global(.active) {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.Thumb {
+    pointer-events: all;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    transition: 0.2s ease;
+}
+
+.Thumb:hover {
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.2);
+}
+
+.Thumb :global(h2) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.InnerArticle {
+    max-width: 450px;
+    width: 100%;
+    min-height: 350px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.InnerArticle :global(button) {
+    top: 0;
+    right: 0;
+    position: absolute;
+    border-bottom-left-radius: 50%;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.InnerArticle :global(h2) {
+    margin: 0.5rem 0;
+    padding-left: 1rem;
+}
+
+.InnerArticle :global(ul) {
+    padding-left: 1rem;
+    list-style-type: none;
+    margin: 0;
+    padding-bottom: 1rem;
 }

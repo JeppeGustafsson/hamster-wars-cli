@@ -1,0 +1,85 @@
+.Previous {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+
+.Previous :global(article) {
+    max-width: 200px;
+    height: 150px;
+    pointer-events: none !important;
+    margin: 0 0.5rem;
+}
+
+.Previous :global(article img) {
+    height: 150px;
+}
+
+.Previous :global(article h2) {
+    padding: 0.5rem;
+    font-size: 1.4rem;
+}
+
+.Active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.HamsterOne,
+.HamsterTwo {
+    animation-duration: 3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(600px, 300px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate(600px, -300px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(300px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+}

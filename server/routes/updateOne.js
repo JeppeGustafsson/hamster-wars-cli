@@ -6,11 +6,6 @@ const db = fs.firestore();
 
 router.put('/hamsters/:id', async (req, res) => {
     const body = req.body;
-    const update = {
-        wins: req.body.wins || null,
-        defeats: req.body.defeats || null,
-        games: req.body.games || null
-    }
     const id = req.params.id;
     const dataToUpdate = db.collection('hamsters').doc(id);
     const snapshot = await dataToUpdate.get().then(doc => doc);
@@ -26,9 +21,9 @@ router.put('/hamsters/:id', async (req, res) => {
     }
     
     await dataToUpdate.update({
-            "defeats": update.defeats, 
-            "wins": update.wins, 
-            "games": update.games
+            "defeats": body.defeats, 
+            "wins": body.wins, 
+            "games": body.games
         });
     res.sendStatus(200);
 });
