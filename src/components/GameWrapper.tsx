@@ -2,6 +2,8 @@ import { useCallback, useState } from 'react';
 import Style from './GameWrapper.module.css';
 import HamsterModel from '../models/Hamster';
 import Hamster from './Hamster';
+import checkImage from '../images/check-mark-256.png';
+import crossImage from '../images/x-mark-256.png';
 import axios from 'axios';
 
 const GameWrapper = (props: any) => {
@@ -35,10 +37,12 @@ const GameWrapper = (props: any) => {
         <section className={Style.GameWrapper}>
             { winner === undefined && loser === undefined ? null : 
             <section className={Style.Previous} style={fadeIn === true ? {animationName: 'fadeOut'} : {animationName: 'fadeIn'}}>
-                <article onClick={() => handleClick(props.data[randOne], props.data[randTwo])}>
+                <article className={Style.PreHamster} onClick={() => handleClick(props.data[randOne], props.data[randTwo])}>
+                    <img className={Style.IndicatorImage} src={checkImage} alt="check" />
                     <Hamster game={true} type='winner' {...winner} />
                 </article>
-                <article onClick={() => handleClick(props.data[randTwo], props.data[randOne])}>
+                <article className={Style.PreHamster} onClick={() => handleClick(props.data[randTwo], props.data[randOne])}>
+                    <img className={Style.IndicatorImage} src={crossImage} alt="cross" />
                     <Hamster game={true} type='loser' {...loser} />
                 </article>
             </section> }
