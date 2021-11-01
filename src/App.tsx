@@ -5,6 +5,7 @@ import HamsterModel from './models/Hamster';
 import TopNavigation from './components/TopNavigation';
 import Hamster from './components/Hamster';
 import GameWrapper from './components/GameWrapper';
+import Form from './components/AddHamsterFrom';
 import HamsterLogo from './images/hamster-logo.png';
 import './App.css';
 
@@ -70,7 +71,7 @@ function App() {
                 <img src={HamsterLogo} alt="logo" />
                 <h1 className="title">Hamster wars</h1>
               </div>
-              <div className="inner-wrapper">
+              <div className="flex-wrapper">
                 <p><b>Welcome to Hamster Wars!</b><br/>If you LOVE cute hamsters, then this is the place to be.<br/>To choose which hamster is cutest, just navigate to the game section and start playing!<br/>Want to see all the super cute hamsters? Then head on over to the gallery.<br/>And if you're not patient enough, go to the scoreboard to see all the cutest hamsters!<br/>That's it!</p>
                 <article>
                   <h2>Top rated hamster!</h2>
@@ -90,13 +91,19 @@ function App() {
             </section>
           </Route>
           <Route path="/scoreboard">
-            <h2>Top winners</h2>
-            <section className="inner-wrapper">
-                {topWinners.map(i => <Hamster key={i.id} {...i} />)}
-            </section>
-            <h2>Top losers</h2>
-            <section className="inner-wrapper">
-                {topLosers.map(i => <Hamster key={i.id} {...i} />)}
+            <section className="flex-wrapper">
+              <section>
+                <h2 className="text-center">Top winners</h2>
+                <section className="flex-wrapper column">
+                    {topWinners.map(i => <Hamster type={'list'} key={i.id} {...i} />)}
+                </section>
+              </section>
+              <section>
+                <h2 className="text-center">Top losers</h2>
+                <section className="flex-wrapper column">
+                    {topLosers.map(i => <Hamster type={'list'} key={i.id} {...i} />)}
+                </section>
+              </section>
             </section>
           </Route>    
         </Switch>
