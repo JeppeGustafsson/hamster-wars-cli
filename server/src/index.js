@@ -42,7 +42,7 @@ app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
 app.use(express.static('build'));
-app.use(express.static('public'));
+app.use('/public', express.static('public'));
 
 //Start server
 app.listen(port, () => {
