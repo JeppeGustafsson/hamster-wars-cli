@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import Style from './Hamster.module.css';
 
-const URL = 'https://boiling-sierra-82200.herokuapp.com/';
-
 const Hamster = (props: any) => {
     const [active, setActive] = useState<boolean>(false);
 
@@ -12,14 +10,14 @@ const Hamster = (props: any) => {
         Style.HamsterWrapper + ' list-item' : Style.HamsterWrapper}>
             <article onClick={() => setActive(true)} className={Style.Thumb}>
                 <div className={Style.Overlay}></div>
-                <h2>{props.name}</h2>
-                <img src={props.imgName?.includes('http') ? props.imgName : URL + props.imgName} alt="hamster-image" />
+                <h2>{'../' + props.name}</h2>
+                <img src={props.imgName} alt="hamster-image" />
             </article>
             { props.game === true ? null : 
             <section className={active === true ? Style.Modal + ' active' : Style.Modal}>
                 <article className={Style.InnerArticle}>
                     <button onClick={() => setActive(false)}>X</button>
-                    <img src={props.imgName?.includes('http') ? props.imgName : URL + props.imgName} alt="hamster-image" />
+                    <img src={props.imgName} alt="hamster-image" />
                     <h2>{props.name}</h2>
                     <ul>
                         <li>Age: {props.age}</li>

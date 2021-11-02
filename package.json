@@ -37,6 +37,7 @@
     "eject": "react-scripts eject",
     "upload": "node server/upload.js"
   },
+  "proxy": "http://localhost:3002",
   "eslintConfig": {
     "extends": [
       "react-app",

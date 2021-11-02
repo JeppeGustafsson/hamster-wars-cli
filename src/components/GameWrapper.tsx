@@ -25,9 +25,9 @@ const GameWrapper = (props: any) => {
 
         fadeIn === true ? setFadeIn(false) : setFadeIn(true);
 
-        axios.put(`https://boiling-sierra-82200.herokuapp.com/hamsters/${winner?.id}`,
+        axios.put(`/hamsters/${winner?.id}`,
         { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 });
-        axios.put(`https://boiling-sierra-82200.herokuapp.com/hamsters/${loser?.id}`,
+        axios.put(`/hamsters/${loser?.id}`,
         { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 });
 
     },[winner, loser]);
