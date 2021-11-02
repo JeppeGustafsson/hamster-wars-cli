@@ -41,8 +41,8 @@ app.use(DeleteOneMatch);
 app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
-app.use(express.static('public'));
-//app.use(express.static('../../builds/build')); använd för server side rendering
+//app.use(express.static('public'));
+app.use(express.static('../../builds/build'));
 
 //Start server
 app.listen(port, () => {
