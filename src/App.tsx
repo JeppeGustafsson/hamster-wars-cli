@@ -38,22 +38,18 @@ function App() {
   useEffect(() => {
     axios.get(all_URL)
       .then(response => {
-        console.log(response.data);
         setAll(response.data);
       });
     axios.get(cutest_URL)
       .then(response => {
-        console.log(response.data);
         setCutest(response.data);
       });
     axios.get(topWinners_URL)
       .then(response => {
-        console.log(response.data);
         setTopWinners(response.data);
       });
     axios.get(topLosers_URL)
       .then(response => {
-        console.log(response.data);
         setTopLosers(response.data);
       });
   },[]);
