@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Style from './Hamster.module.css';
-import axios from 'axios';
 
-const URL = 'https://murmuring-fortress-23751.herokuapp.com/';
+const URL = 'https://boiling-sierra-82200.herokuapp.com/';
 
 const Hamster = (props: any) => {
     const [active, setActive] = useState<boolean>(false);

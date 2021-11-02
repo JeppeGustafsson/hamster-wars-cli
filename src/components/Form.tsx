@@ -10,7 +10,7 @@ const Form = (props: any) => {
     const [imgName, setImgName] = useState<string>('');
 
     const addHamster = () => {
-        axios.post('https://murmuring-fortress-23751.herokuapp.com/hamsters', 
+        axios.post('https://boiling-sierra-82200.herokuapp.com/hamsters', 
         {
             name: name,
             age: age,

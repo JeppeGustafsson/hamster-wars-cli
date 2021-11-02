@@ -9,11 +9,11 @@ import Form from './components/Form';
 import HamsterLogo from './images/hamster-logo.png';
 import './App.css';
 
-const all_URL: string = 'https://murmuring-fortress-23751.herokuapp.com/hamsters';
-const cutest_URL: string = 'https://murmuring-fortress-23751.herokuapp.com/hamsters/cutest';
-const matches_URL: string = 'https://murmuring-fortress-23751.herokuapp.com/matches';
-const topWinners_URL: string = 'https://murmuring-fortress-23751.herokuapp.com/winners';
-const topLosers_URL: string = 'https://murmuring-fortress-23751.herokuapp.com/losers';
+const all_URL: string = 'https://boiling-sierra-82200.herokuapp.com/hamsters';
+const cutest_URL: string = 'https://boiling-sierra-82200.herokuapp.com/hamsters/cutest';
+const matches_URL: string = 'https://boiling-sierra-82200.herokuapp.com/matches';
+const topWinners_URL: string = 'https://boiling-sierra-82200.herokuapp.com/winners';
+const topLosers_URL: string = 'https://boiling-sierra-82200.herokuapp.com/losers';
 
 function App() {
   const [all, setAll] = useState<HamsterModel[]>([]);
