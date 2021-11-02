@@ -28,17 +28,6 @@ router.get('/hamsters/cutest', async (req, res) => {
         return;
     }
 
-    // hamsters.sort((a,b) => {
-    //     let aDiff = a.wins - a.defeats;
-    //     let bDiff = b.wins - b.defeats;
-    //     return aDiff - bDiff
-    // });
-
-    // hamsters.reverse();
-
-    // let maxScore = hamsters[0].wins - hamsters[0].defeats;
-    // let allWinners = hamsters.filter(z => z.wins - z.defeats === maxScore);
-
     res.status(200).json(allWinners);
 });
 
