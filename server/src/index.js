@@ -15,6 +15,7 @@ const GetMatchesForHamster = require('../routes/getMatchWinners.js');
 const TopFiveWinners = require('../routes/topFiveWinners.js');
 const TopFiveLosers = require('../routes/topFiveLosers.js');
 const DeleteOneMatch = require('../routes/deleteOneMatch.js');
+const path = require('path');
 const cors = require('cors');
 const port = process.env.PORT || 3002;
 
@@ -42,7 +43,7 @@ app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
 app.use(express.static('build'));
-app.use('/public', express.static('public'));
+app.use(express.static('publicImageDirectory'));
 
 //Start server
 app.listen(port, () => {
