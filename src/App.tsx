@@ -5,7 +5,7 @@ import HamsterModel from './models/Hamster';
 import TopNavigation from './components/TopNavigation';
 import Hamster from './components/Hamster';
 import GameWrapper from './components/GameWrapper';
-import Form from './components/AddHamsterFrom';
+import Form from './components/Form';
 import HamsterLogo from './images/hamster-logo.png';
 import './App.css';
 
@@ -69,7 +69,7 @@ function App() {
             <section>
               <div className="logo-wrapper">
                 <img src={HamsterLogo} alt="logo" />
-                <h1 className="title">Hamster wars</h1>
+                <h1 className="title">Hamster wars</h1> {/* Egen komponent till Home kanske? */}
               </div>
               <div className="flex-wrapper">
                 <p><b>Welcome to Hamster Wars!</b><br/>If you LOVE cute hamsters, then this is the place to be.<br/>To choose which hamster is cutest, just navigate to the game section and start playing!<br/>Want to see all the super cute hamsters? Then head on over to the gallery.<br/>And if you're not patient enough, go to the scoreboard to see all the cutest hamsters!<br/>That's it!</p>
@@ -86,8 +86,9 @@ function App() {
             <GameWrapper data={all} />
           </Route>
           <Route path="/gallery">
+            <Form />
             <section className="inner-wrapper">
-              {all.map(i => <Hamster key={i.id} {...i} />)}
+              {all.map(i => <Hamster key={i.id} {...i} />)} {/* Egen komponent till gallery? */}
             </section>
           </Route>
           <Route path="/scoreboard">
@@ -95,13 +96,13 @@ function App() {
               <section>
                 <h2 className="text-center">Top winners</h2>
                 <section className="flex-wrapper column">
-                    {topWinners.map(i => <Hamster type={'list'} key={i.id} {...i} />)}
+                    {topWinners.map(i => <Hamster type={'list'} key={i.id} {...i} />)} {/* Egen komponent till scoreboard kanske? */}
                 </section>
               </section>
               <section>
                 <h2 className="text-center">Top losers</h2>
                 <section className="flex-wrapper column">
-                    {topLosers.map(i => <Hamster type={'list'} key={i.id} {...i} />)}
+                    {topLosers.map(i => <Hamster type={'list'} key={i.id} {...i} />)} 
                 </section>
               </section>
             </section>
@@ -109,7 +110,10 @@ function App() {
         </Switch>
       </main>
       <footer>
-
+        <ul>
+          <li>Hamster Wars</li>
+          <li><a href="https://github.com/JeppeGustafsson/hamster-wars-cli" target="_blank">Github</a></li> {/* Egen komponent till footer kanske? */}
+        </ul>
       </footer>
     </div>
   );

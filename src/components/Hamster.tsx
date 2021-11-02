@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Style from './Hamster.module.css';
-import HamsterModel from '../models/Hamster';
+import axios from 'axios';
+
+const URL = 'https://murmuring-fortress-23751.herokuapp.com/';
 
 const Hamster = (props: any) => {
     const [active, setActive] = useState<boolean>(false);
@@ -12,13 +14,13 @@ const Hamster = (props: any) => {
             <article onClick={() => setActive(true)} className={Style.Thumb}>
                 <div className={Style.Overlay}></div>
                 <h2>{props.name}</h2>
-                <img src={`https://murmuring-fortress-23751.herokuapp.com/${props.imgName}`} alt="" />
+                <img src={props.imgName.includes('http') ? props.imgName : URL + props.imgName} alt="hamster-image" />
             </article>
             { props.game === true ? null : 
             <section className={active === true ? Style.Modal + ' active' : Style.Modal}>
                 <article className={Style.InnerArticle}>
                     <button onClick={() => setActive(false)}>X</button>
-                    <img src={`https://murmuring-fortress-23751.herokuapp.com/${props.imgName}`} alt="" />
+                    <img src={props.imgName.includes('http') ? props.imgName : URL + props.imgName} alt="hamster-image" />
                     <h2>{props.name}</h2>
                     <ul>
                         <li>Age: {props.age}</li>

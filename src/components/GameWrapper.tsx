@@ -22,17 +22,16 @@ const GameWrapper = (props: any) => {
         }, 1000);
         setWinner(a);
         setLoser(b);
+
         fadeIn === true ? setFadeIn(false) : setFadeIn(true);
+
         axios.put(`https://murmuring-fortress-23751.herokuapp.com/hamsters/${winner?.id}`,
         { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 });
         axios.put(`https://murmuring-fortress-23751.herokuapp.com/hamsters/${loser?.id}`,
         { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 });
-        axios.get(`https://murmuring-fortress-23751.herokuapp.com/hamsters/${winner?.id}`)
-            .then(response => {
-                console.log(response.data);
-            })
+
     },[winner, loser]);
-    console.log(winner)
+
     return (
         <section className={Style.GameWrapper}>
             { winner === undefined && loser === undefined ? null : 
@@ -55,7 +54,7 @@ const GameWrapper = (props: any) => {
                 <article 
                     onClick={() => handleClick(props.data[randTwo], props.data[randOne])} 
                     className={Style.HamsterTwo + fadeOut}>
-                    <Hamster game={true} {...props.data[randTwo === randOne ? randTwo + 1 : randTwo]} />
+                   <Hamster game={true} {...props.data[randTwo === randOne ? randTwo + 1 : randTwo]} />
                 </article>
             </section>
         </section>
