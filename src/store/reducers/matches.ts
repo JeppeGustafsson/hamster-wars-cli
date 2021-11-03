@@ -1,6 +1,6 @@
 
 
-const matchesReducer = (state = [], action: any) => {
+const matches = (state = [], action: any) => {
     switch(action.type) {
         case 'ADD_MATCH':
             return [...state, action.payload];
@@ -9,4 +9,4 @@ const matchesReducer = (state = [], action: any) => {
     }
 }
 
-export default matchesReducer;
+export default matches;

@@ -5,15 +5,18 @@ import Hamster from './Hamster';
 import checkImage from '../images/check-mark-256.png';
 import crossImage from '../images/x-mark-256.png';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const GameWrapper = (props: any) => {
-    const [winner, setWinner] = useState<HamsterModel>(props?.data[0]);
-    const [loser, setLoser] = useState<HamsterModel>(props?.data[0]);
+    const allHamsterObjects: HamsterModel[] = useSelector((state: any) => state.hamsters);
+
+    const [winner, setWinner] = useState<HamsterModel>(allHamsterObjects[0]);
+    const [loser, setLoser] = useState<HamsterModel>(allHamsterObjects[0]);
     const [fadeIn, setFadeIn] = useState<boolean>(true);
     const [fadeOut, setFadeOut] = useState<string>('');
 
-    const randOne: number = Math.floor(Math.random() * props?.data?.length);
-    const randTwo: number = Math.floor(Math.random() * props?.data?.length);
+    const randOne: number = Math.floor(Math.random() * allHamsterObjects?.length);
+    const randTwo: number = Math.floor(Math.random() * allHamsterObjects?.length);
 
     const handleClick = useCallback((a: HamsterModel, b: HamsterModel) => {
         setFadeOut(' out');
@@ -36,25 +39,25 @@ const GameWrapper = (props: any) => {
         <section className={Style.GameWrapper}>
             { winner === undefined && loser === undefined ? null : 
             <section className={Style.Previous} style={fadeIn === true ? {animationName: 'fadeOut'} : {animationName: 'fadeIn'}}>
-                <article className={Style.PreHamster} onClick={() => handleClick(props.data[randOne], props.data[randTwo])}>
+                <article className={Style.PreHamster} onClick={() => handleClick(allHamsterObjects[randOne], allHamsterObjects[randTwo])}>
                     <img className={Style.IndicatorImage} src={checkImage} alt="check" />
                     <Hamster game={true} type='winner' {...winner} />
                 </article>
-                <article className={Style.PreHamster} onClick={() => handleClick(props.data[randTwo], props.data[randOne])}>
+                <article className={Style.PreHamster} onClick={() => handleClick(allHamsterObjects[randTwo], allHamsterObjects[randOne])}>
                     <img className={Style.IndicatorImage} src={crossImage} alt="cross" />
                     <Hamster game={true} type='loser' {...loser} />
                 </article>
             </section> }
             <section className={Style.Active}>
                 <article 
-                    onClick={() => handleClick(props.data[randOne], props.data[randTwo])} 
+                    onClick={() => handleClick(allHamsterObjects[randOne], allHamsterObjects[randTwo])} 
                     className={Style.HamsterOne + fadeOut}>
-                    <Hamster game={true} {...props.data[randOne === randTwo ? randOne + 1 : randOne]} />
+                    <Hamster game={true} {...allHamsterObjects[randOne === randTwo ? randOne + 1 : randOne]} />
                 </article>
                 <article 
-                    onClick={() => handleClick(props.data[randTwo], props.data[randOne])} 
+                    onClick={() => handleClick(allHamsterObjects[randTwo], allHamsterObjects[randOne])} 
                     className={Style.HamsterTwo + fadeOut}>
-                   <Hamster game={true} {...props.data[randTwo === randOne ? randTwo + 1 : randTwo]} />
+                   <Hamster game={true} {...allHamsterObjects[randTwo === randOne ? randTwo + 1 : randTwo]} />
                 </article>
             </section>
         </section>

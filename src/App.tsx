@@ -1,56 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addHamsters, addCutest, addWinners, addLosers } from './store/actions/actions';
 import axios from 'axios';
-import HamsterModel from './models/Hamster';
 import TopNavigation from './components/TopNavigation';
-import Hamster from './components/Hamster';
 import GameWrapper from './components/GameWrapper';
 import Form from './components/Form';
-import HamsterLogo from './images/hamster-logo.png';
+import Scoreboard from './components/Scoreboard';
+import Gallery from './components/Gallery';
+import Footer from './components/Footer';
+import Home from './components/Home';
 import './App.css';
 
-const all_URL: string = '/hamsters';
-const cutest_URL: string = '/hamsters/cutest';
-const matches_URL: string = '/matches';
-const topWinners_URL: string = '/winners';
-const topLosers_URL: string = '/losers';
-
 function App() {
-  const [all, setAll] = useState<HamsterModel[]>([]);
-  const [cutest, setCutest] = useState<HamsterModel[]>([]);
-  const [topWinners, setTopWinners] = useState<HamsterModel[]>([]);
-  const [topLosers, setTopLosers] = useState<HamsterModel[]>([]);
+  const dispatch = useDispatch();
 
-  const randCutestNum: number = Math.floor(Math.random() * cutest.length);
-  const randomCutestHamster: HamsterModel = {
-    id: cutest[randCutestNum]?.id,
-    wins: cutest[randCutestNum]?.wins,
-    defeats: cutest[randCutestNum]?.defeats,
-    games: cutest[randCutestNum]?.games,
-    favFood: cutest[randCutestNum]?.favFood,
-    name: cutest[randCutestNum]?.name,
-    loves: cutest[randCutestNum]?.loves,
-    imgName: cutest[randCutestNum]?.imgName,
-    age: cutest[randCutestNum]?.age
-  }
-
-  //axios request to get all hamster objects from database
   useEffect(() => {
-    axios.get(all_URL)
+    axios.get('/hamsters')
       .then(response => {
-        setAll(response.data);
+        dispatch(addHamsters(response.data));
       });
-    axios.get(cutest_URL)
+    axios.get('/hamsters/cutest')
       .then(response => {
-        setCutest(response.data);
+        dispatch(addCutest(response.data));
       });
-    axios.get(topWinners_URL)
+    axios.get('/winners')
       .then(response => {
-        setTopWinners(response.data);
+        dispatch(addWinners(response.data));
       });
-    axios.get(topLosers_URL)
+    axios.get('/losers')
       .then(response => {
-        setTopLosers(response.data);
+        dispatch(addLosers(response.data))
       });
   },[]);
 
@@ -62,55 +42,21 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/">
-            <section>
-              <div className="logo-wrapper">
-                <img src={HamsterLogo} alt="logo" />
-                <h1 className="title">Hamster wars</h1> {/* Egen komponent till Home kanske? */}
-              </div>
-              <div className="flex-wrapper">
-                <p><b>Welcome to Hamster Wars!</b><br/>If you LOVE cute hamsters, then this is the place to be.<br/>To choose which hamster is cutest, just navigate to the game section and start playing!<br/>Want to see all the super cute hamsters? Then head on over to the gallery.<br/>And if you're not patient enough, go to the scoreboard to see all the cutest hamsters!<br/>That's it!</p>
-                <article>
-                  <h2>Top rated hamster!</h2>
-                  <Hamster 
-                    {...randomCutestHamster}
-                  />
-                </article>
-              </div>
-            </section>
+            <Home />
           </Route>
           <Route path="/game">
-            <GameWrapper data={all} />
+            <GameWrapper />
           </Route>
           <Route path="/gallery">
             <Form />
-            <section className="inner-wrapper">
-              {all.map(i => <Hamster key={i.id} {...i} />)} {/* Egen komponent till gallery? */}
-            </section>
+            <Gallery />
           </Route>
           <Route path="/scoreboard">
-            <section className="flex-wrapper">
-              <section>
-                <h2 className="text-center">Top winners</h2>
-                <section className="flex-wrapper column">
-                    {topWinners.map(i => <Hamster type={'list'} key={i.id} {...i} />)} {/* Egen komponent till scoreboard kanske? */}
-                </section>
-              </section>
-              <section>
-                <h2 className="text-center">Top losers</h2>
-                <section className="flex-wrapper column">
-                    {topLosers.map(i => <Hamster type={'list'} key={i.id} {...i} />)} 
-                </section>
-              </section>
-            </section>
+            <Scoreboard />
           </Route>    
         </Switch>
       </main>
-      <footer>
-        <ul>
-          <li>Hamster Wars</li>
-          <li><a href="https://github.com/JeppeGustafsson/hamster-wars-cli" target="_blank">Github</a></li> {/* Egen komponent till footer kanske? */}
-        </ul>
-      </footer>
+      <Footer />
     </div>
   );
 }

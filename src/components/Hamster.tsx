@@ -19,7 +19,7 @@ const Hamster = (props: any) => {
             <section className={active === true ? Style.Modal + ' active' : Style.Modal}>
                 <article className={Style.InnerArticle}>
                     <button onClick={() => setActive(false)}>X</button>
-                    <img src={imagePath + props.imgName} alt="hamster-image" />
+                    <img src={props.imgName} alt="hamster-image" />
                     <h2>{props.name}</h2>
                     <ul>
                         <li>Age: {props.age}</li>
