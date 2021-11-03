@@ -5,7 +5,7 @@ import Style from './Home.module.css';
 import HamsterLogo from '../images/hamster-logo.png';
 
 const Home = () => {
-    const hamsters: hamsterModel[] = useSelector((state: any) => state.hamsters);
+    const hamsters: hamsterModel[] = useSelector((state: any) => state.cutest);
     const rand: number = Math.floor(Math.random() * hamsters.length);
 
     const randomCutestHamster: hamsterModel = {
