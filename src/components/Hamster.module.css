@@ -90,7 +90,7 @@
     overflow: hidden;
 }
 
-.InnerArticle :global(button) {
+.Close {
     top: 0;
     right: 0;
     position: absolute;
@@ -101,6 +101,20 @@
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
+}
+
+.Remove {
+    bottom: 1rem;
+    right: 1rem;
+    position: absolute;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    outline: none;
+    font-weight: lighter;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
 }
 
 .InnerArticle :global(h2) {

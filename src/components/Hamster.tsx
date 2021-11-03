@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import axios from 'axios';
 import Style from './Hamster.module.css';
-
-const imagePath = '../images/';
 
 const Hamster = (props: any) => {
     const [active, setActive] = useState<boolean>(false);
+
+    const handleDelete = (i: string) => {
+        axios.delete(`/hamsters/${i}`);
+        setActive(false);
+    }
 
     return (
         <section className={props.type === 'winner' ? Style.HamsterWrapper + ' winner' : Style.HamsterWrapper 
@@ -18,7 +22,8 @@ const Hamster = (props: any) => {
             { props.game === true ? null : 
             <section className={active === true ? Style.Modal + ' active' : Style.Modal}>
                 <article className={Style.InnerArticle}>
-                    <button onClick={() => setActive(false)}>X</button>
+                    <button className={Style.Close} onClick={() => setActive(false)}>X</button>
+                    <button className={Style.Remove} onClick={() => handleDelete(props.id)}>Remove</button>
                     <img src={props.imgName} alt="hamster-image" />
                     <h2>{props.name}</h2>
                     <ul>
