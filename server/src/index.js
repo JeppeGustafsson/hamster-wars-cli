@@ -27,7 +27,6 @@ app.use((req, res, next) => {
     console.log(`Request: ${req.method} ${req.url}`);
     next();
 });
-app.use(express.static('publicImageDirectory'));
 app.use(Init);
 app.use(GetRandom);
 app.use(CutestRoute);
@@ -44,6 +43,7 @@ app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
 app.use(express.static('build'));
+app.use(express.static('publicImageDirectory'));
 
 //Start server
 app.listen(port, () => {
