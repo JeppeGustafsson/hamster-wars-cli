@@ -25,12 +25,12 @@ const Form = (props: any) => {
     
     return (
         <section className={Style.Form}>
-            <input type="text" name="name" placeholder="Name" onChange={(e) => setName(e.target.value)} />
-            <input type="text" name="favFood" placeholder="Fav food" onChange={(e) => setFaveFood(e.target.value)} />
-            <input type="text" name="loves" placeholder="Loves" onChange={(e) => setLoves(e.target.value)} />
-            <input type="text" name="age" placeholder="Age" onChange={(e) => setAge(parseInt(e.target.value))} />
-            <input type="text" name="imgName" placeholder="Image URL" onChange={(e) => setImgName(e.target.value)} />
-            <button onClick={addHamster}>Add</button>
+            <input className={Style.Input} type="text" name="name" placeholder="Name" onChange={(e) => setName(e.target.value)} />
+            <input className={Style.Input} type="text" name="favFood" placeholder="Fav food" onChange={(e) => setFaveFood(e.target.value)} />
+            <input className={Style.Input} type="text" name="loves" placeholder="Loves" onChange={(e) => setLoves(e.target.value)} />
+            <input className={Style.Input} type="text" name="age" placeholder="Age" onChange={(e) => setAge(parseInt(e.target.value))} />
+            <input className={Style.Input} type="text" name="imgName" placeholder="Image URL" onChange={(e) => setImgName(e.target.value)} />
+            <button className={Style.Add} onClick={addHamster}>Add</button>
         </section>
     )    
 }
