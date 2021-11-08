@@ -1,8 +1,8 @@
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import hamsterModel from '../models/Hamster';
 import Hamster from '../components/Hamster';
 import Style from './Home.module.css';
-import HamsterLogo from '../images/hamster-logo.png';
 
 const Home = () => {
     const hamsters: hamsterModel[] = useSelector((state: any) => state.cutest);
@@ -21,12 +21,11 @@ const Home = () => {
     }
 
     return (
-        <section>
+        <section className={Style.Home}>
             <div className="logo-wrapper">
-            <img src={HamsterLogo} alt="logo" />
-            <h1 className="title">Hamster wars</h1> {/* Egen komponent till Home kanske? */}
+            <h1 className="title">Hamster wars</h1>
             </div>
-            <div className="flex-wrapper">
+            <div style={{position: "relative"}} className="flex-wrapper between">
             <p><b>Welcome to Hamster Wars!</b><br/>If you LOVE cute hamsters, then this is the place to be.<br/>To choose which hamster is cutest, just navigate to the game section and start playing!<br/>Want to see all the super cute hamsters? Then head on over to the gallery.<br/>And if you're not patient enough, go to the scoreboard to see all the cutest hamsters!<br/>That's it!</p>
             <article>
                 <h2>Top rated hamster!</h2>
