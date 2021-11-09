@@ -1,12 +1,20 @@
 import hamsterModel from '../models/Hamster';
+import { useDispatch } from 'react-redux';
+import { addHamsters } from '../store/actions/actions';
 import axios from 'axios';
 import Style from './Modal.module.css';
 
 const Modal = (props: any) => {
 
+    const dispatch = useDispatch();
+
     const handleDelete = (i: string) => {
         axios.delete(`/hamsters/${i}`);
         props.set(false);
+        axios.get('/hamsters')
+            .then(response => {
+            dispatch(addHamsters(response.data));
+        });
     }
 
     return (

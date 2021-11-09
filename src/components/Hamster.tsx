@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Modal from './Modal';
+import checkImage from '../images/check-mark-256.png';
+import crossImage from '../images/x-mark-256.png';
 import Style from './Hamster.module.css';
 
 const Hamster = (props: any) => {
@@ -24,6 +26,8 @@ const Hamster = (props: any) => {
                 set={(e: boolean) => setActive(e)}
               /> }
             <article onClick={() => setActive(true)} className={Style.Thumb}>
+                { props.type === 'winner' ? <img className={Style.IndicatorImage} src={checkImage} alt="check" /> : null}
+                { props.type === 'loser' ? <img className={Style.IndicatorImage} src={crossImage} alt="cross" /> : null }
                 <div className={Style.Overlay}></div>
                 <h2>{props.name}</h2>
                 <img src={props.imgName} alt="hamster-image" />

@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addHamsters } from '../store/actions/actions';
 import Style from './Form.module.css';
 import axios from 'axios';
 
@@ -8,6 +10,8 @@ const Form = (props: any) => {
     const [loves, setLoves] = useState<string>('');
     const [age, setAge] = useState<number>(0);
     const [imgName, setImgName] = useState<string>('');
+
+    const dispatch = useDispatch();
 
     const addHamster = () => {
         axios.post('/hamsters', 
@@ -21,7 +25,13 @@ const Form = (props: any) => {
             defeats: 0,
             games: 0
         })
-    }   
+        axios.get('/hamsters')
+            .then(response => {
+            dispatch(addHamsters(response.data));
+        });
+    }  
+
+
     
     return (
         <section className={Style.Form}>

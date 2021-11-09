@@ -31,7 +31,16 @@
 
 .HamsterWrapper:global(.list-item) .Thumb :global(img) {
     height: 60px;
-    width: 450px;
+    max-width: 450px;
+    width: 100%;
+    min-width: 350px;
+}
+
+
+:global(.history) .HamsterWrapper {
+    width: 100%;
+    max-width: 350px;
+    margin: 0.5rem;
 }
 
 .Thumb {
@@ -57,4 +66,16 @@
     background-color: rgba(0,0,0,0.8);
     color: #fff;
     font-weight: lighter;
+}
+
+.IndicatorImage {
+    position: absolute;
+    z-index: 12;
+    top: 25%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding-left: 0.5rem;
+    width: 120px !important;
+    height: 120px !important;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addHamsters, addCutest, addWinners, addLosers } from './store/actions/actions';
+import { addCutest, addHamsters } from './store/actions/actions';
 import axios from 'axios';
 import TopNavigation from './components/TopNavigation';
 import GameWrapper from './components/GameWrapper';
@@ -21,31 +21,16 @@ function App() {
   const allHamsters: hamsterModel[] = useSelector((state: any) => state.hamsters);
 
   useEffect(() => {
-    axios.get('/hamsters')
-      .then(response => {
-        dispatch(addHamsters(response.data));
-      });
     axios.get('/hamsters/cutest')
-      .then(response => {
-        dispatch(addCutest(response.data));
-      });
-    axios.get('/winners')
-      .then(response => {
-        dispatch(addWinners(response.data));
-      });
-    axios.get('/losers')
-      .then(response => {
-        dispatch(addLosers(response.data))
-      });
+    .then(response => {
+      dispatch(addCutest(response.data));
+      console.log(response.data)
+    });
+    axios.get('/hamsters')
+    .then(response => {
+      dispatch(addHamsters(response.data));
+    });
   },[]);
-
-  const particlesInit = (main: any) => {
-    console.log(main);
-  };
-
-  const particlesLoaded = (container: any) => {
-
-  }
 
   return (
     <div className="App">
@@ -69,80 +54,6 @@ function App() {
             <Scoreboard />
           </Route>    
         </Switch>
-        {/* <div id="particle-div" className="particle-wrapper">
-          {on ? null : 
-                  <Particles
-                      id="tsparticles"
-                      init={particlesInit}
-                      loaded={particlesLoaded}
-                      options={{
-                          background: {
-                              color: {
-                                  value: "#111111",
-                              },
-                              size: "cover",
-                              position: "50% 50%",
-                              repeat: "no-repeat"
-                      },
-                      fpsLimit: 60,
-                      interactivity: {
-                          events: {
-                              onHover: {
-                              enable: true,
-                              mode: "grab",
-                              },
-                              onClick: {
-                                  enable: true
-                              }
-                          }
-                      },
-                      particles: {
-                          color: {
-                              value: "#ffffff",
-                          },
-                      collisions: {
-                          enable: true,
-                      },
-                      move: {
-                          direction: "none",
-                          enable: true,
-                          outMode: "bounce",
-                          random: true,
-                          speed: 0.4,
-                          straight: false,
-                      },
-                      number: {
-                          density: {
-                              enable: true,
-                              value_area: 800,
-                          },
-                          value: allHamsters.length,
-                      },
-                      opacity: {
-                          value: 0.5,
-                      },
-                      shape: {
-                          type: "images",
-                          stroke: {
-                              width: 0,
-                              color: "000"
-                          },
-                          image: allHamsters.map((hamster) => {
-                                  return { src: hamster.imgName, width: 100, height: 100 }
-                          }),
-                          polygon: {
-                              nb_sides: 0
-                          }
-                      },
-                      size: {
-                          random: true,
-                          value: 20,
-                      },
-                      },
-                      detectRetina: false
-                      }}
-                  />}
-        </div> */}
       </main>
       <Footer />
     </div>

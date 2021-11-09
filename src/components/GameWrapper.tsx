@@ -1,9 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState} from 'react';
 import Style from './GameWrapper.module.css';
 import HamsterModel from '../models/Hamster';
 import Hamster from './Hamster';
-import checkImage from '../images/check-mark-256.png';
-import crossImage from '../images/x-mark-256.png';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -32,6 +30,7 @@ const GameWrapper = (props: any) => {
         { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 });
         axios.put(`/hamsters/${loser?.id}`,
         { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 });
+        axios.post('/matches', { loserId: loser.id, winnerId: winner.id });
 
     },[winner, loser]);
 
@@ -40,11 +39,9 @@ const GameWrapper = (props: any) => {
             { winner === undefined && loser === undefined ? null : 
             <section className={Style.Previous} style={fadeIn === true ? {animationName: 'fadeOut'} : {animationName: 'fadeIn'}}>
                 <article className={Style.PreHamster} onClick={() => handleClick(allHamsterObjects[randOne], allHamsterObjects[randTwo])}>
-                    <img className={Style.IndicatorImage} src={checkImage} alt="check" />
                     <Hamster game={true} type='winner' {...winner} />
                 </article>
                 <article className={Style.PreHamster} onClick={() => handleClick(allHamsterObjects[randTwo], allHamsterObjects[randOne])}>
-                    <img className={Style.IndicatorImage} src={crossImage} alt="cross" />
                     <Hamster game={true} type='loser' {...loser} />
                 </article>
             </section> }

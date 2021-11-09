@@ -24,7 +24,7 @@
     position: relative;
 }
 
-.IndicatorImage {
+.PreHamster :global(img:nth-of-type(1)) {
     position: absolute;
     z-index: 12;
     top: 20%;
