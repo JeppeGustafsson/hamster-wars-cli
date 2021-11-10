@@ -70,10 +70,14 @@
     width: 50px;
     height: 5px;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #4e9eeb;
     margin: 0.25rem 0;
     transition: 0.3s ease;
     position: absolute;
+}
+
+:global(.active) .line {
+    background-color: #fff;
 }
 
 .line:nth-of-type(1) {
