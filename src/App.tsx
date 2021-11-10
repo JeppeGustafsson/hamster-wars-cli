@@ -44,7 +44,6 @@ function App() {
       });
       console.log('update success')
   },[update]);
-
   const updateData = () => {
     update === true ? setUpdate(false) : setUpdate(true);
   }
