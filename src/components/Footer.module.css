@@ -1,16 +1,21 @@
 .Footer {
-    width: 100%;
-    height: 70px;
-    background-color: #2b2b2b;
     position: fixed;
     bottom: 0;
     z-index: 25;
+    width: 100%;
+    height: 70px;
+}
+
+.Footer :global(footer) {
+    position: relative;
+    height: 70px;
+    width: 100%;
 }
 
 :global(footer li),
 :global(footer li a),
 :global(footer ul) {
-    color: #fff;
+    color: #2b2b2b;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -20,4 +25,19 @@
     align-items: center;
     width: 100%;
     height: 70px;
+    position: relative;
+    z-index: 2;
+}
+
+.Wave {
+    position: absolute;
+    bottom: 0;
+    min-height: 120px;
+    max-height: 200px;
+    width: 100%;
+    max-width: none;
+}
+
+.Wave :global(path) {
+    object-fit: cover;
 }
