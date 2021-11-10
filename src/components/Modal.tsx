@@ -1,20 +1,20 @@
-import hamsterModel from '../models/Hamster';
-import { useDispatch } from 'react-redux';
-import { addHamsters } from '../store/actions/actions';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Style from './Modal.module.css';
 
 const Modal = (props: any) => {
-
-    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDelete = (i: string) => {
-        axios.delete(`/hamsters/${i}`);
+        axios.delete(`/hamsters/${i}`).catch((error) => {
+            if (error.response) {
+                props.setErrorCode(error.response.status);
+                props.setErrorMessage('It seems like something went wrong...'); 
+                history.push('/error');
+            }
+        })
         props.set(false);
-        axios.get('/hamsters')
-            .then(response => {
-            dispatch(addHamsters(response.data));
-        });
+        props.update();
     }
 
     return (

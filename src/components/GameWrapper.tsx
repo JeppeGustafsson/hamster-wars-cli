@@ -1,4 +1,5 @@
 import { useCallback, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import Style from './GameWrapper.module.css';
 import HamsterModel from '../models/Hamster';
 import Hamster from './Hamster';
@@ -7,6 +8,7 @@ import { useSelector } from 'react-redux';
 
 const GameWrapper = (props: any) => {
     const allHamsterObjects: HamsterModel[] = useSelector((state: any) => state.hamsters);
+    const history = useHistory();
 
     const [winner, setWinner] = useState<HamsterModel>(allHamsterObjects[0]);
     const [loser, setLoser] = useState<HamsterModel>(allHamsterObjects[0]);
@@ -27,11 +29,33 @@ const GameWrapper = (props: any) => {
         fadeIn === true ? setFadeIn(false) : setFadeIn(true);
 
         axios.put(`/hamsters/${winner?.id}`,
-        { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 });
+        { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 })
+            .catch((error) => {
+                if (error.response) {
+                    props.setErrorCode(error.response.status);
+                    props.setErrorMessage('It seems like something went wrong...'); 
+                    history.push('/error');
+                }
+            });
         axios.put(`/hamsters/${loser?.id}`,
-        { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 });
-        axios.post('/matches', { loserId: loser.id, winnerId: winner.id });
-
+        { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 })
+            .catch((error) => {
+                if (error.response) {
+                    props.setErrorCode(error.response.status);
+                    props.setErrorMessage('It seems like something went wrong...'); 
+                    history.push('/error');
+                }
+            });
+        axios.post('/matches', { loserId: loser.id, winnerId: winner.id })
+            .catch((error) => {
+                if (error.response) {
+                    props.setErrorCode(error.response.status);
+                    props.setErrorMessage('It seems like something went wrong...'); 
+                    history.push('/error');
+                }
+            });
+        
+        props.update();
     },[winner, loser]);
 
     return (

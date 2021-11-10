@@ -1,0 +1,38 @@
+.ErrorPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -70px;
+}
+
+.ErrorPage :global(h1),
+.ErrorPage :global(h3) {
+    color: #fff;
+}
+
+.ErrorPage :global(h1) {
+    font-size: 8.4rem;
+    margin: 1rem 0;
+    font-family: Helvetica;
+}
+
+.ErrorPage :global(h3) {
+    margin: 2rem 0;
+    font-family: Helvetica;
+}
+
+.ErrorPage :global(button) {
+    max-width: 200px;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    border-radius: 15px;
+    margin: 2rem 0.2rem;
+    color: #fff;
+    background-color: #2253d8;
+    border: none;
+    cursor: pointer;
+}

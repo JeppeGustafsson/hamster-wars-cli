@@ -1,25 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { addHamsters } from '../store/actions/actions';
-import axios from 'axios';
+import { useSelector } from 'react-redux';
 import hamsterModel from '../models/Hamster';
 import Hamster from '../components/Hamster';
 import Style from './Gallery.module.css';
 
-const Gallery = () => {
+const Gallery = (props: any) => {
     const all: hamsterModel[] = useSelector((state: any) => state.hamsters);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        axios.get('/hamsters')
-            .then(response => {
-            dispatch(addHamsters(response.data));
-            });
-    },[]);
 
     return (
         <section className="inner-wrapper">
-              {all.map((i: hamsterModel) => <Hamster key={i.id} {...i} />)} 
+              {all.map((i: hamsterModel) => <Hamster setErrorCode={(e: string) => props.setErrorCode(e)} 
+                setErrorMessage={(e: string) => props.setErrorMessage(e)}  update={props.update} key={i.id} {...i} />)} 
         </section>
     )
 }

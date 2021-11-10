@@ -24,6 +24,9 @@ const Hamster = (props: any) => {
                 games={props.games}
                 active={active}
                 set={(e: boolean) => setActive(e)}
+                update={props.update}
+                setErrorCode={(e: string) => props.setErrorCode(e)} 
+                setErrorMessage={(e: string) => props.setErrorMessage(e)} 
               /> }
             <article onClick={() => setActive(true)} className={Style.Thumb}>
                 { props.type === 'winner' ? <img className={Style.IndicatorImage} src={checkImage} alt="check" /> : null}
