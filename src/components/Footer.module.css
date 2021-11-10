@@ -31,13 +31,10 @@
 
 .Wave {
     position: absolute;
-    bottom: 0;
+    bottom: -50px;
+    left: -200px;
     min-height: 120px;
     max-height: 200px;
-    width: 100%;
+    width: 2800px;
     max-width: none;
-}
-
-.Wave :global(path) {
-    object-fit: cover;
 }
