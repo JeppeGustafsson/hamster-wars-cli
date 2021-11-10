@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addHamsters } from '../store/actions/actions';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Style from './Form.module.css';
 import axios from 'axios';
 
@@ -11,7 +10,7 @@ const Form = (props: any) => {
     const [age, setAge] = useState<number>(0);
     const [imgName, setImgName] = useState<string>('');
 
-    const dispatch = useDispatch();
+    const history = useHistory();
 
     const addHamster = () => {
         axios.post('/hamsters', 
@@ -24,11 +23,19 @@ const Form = (props: any) => {
             wins: 0,
             defeats: 0,
             games: 0
-        })
-        axios.get('/hamsters')
-            .then(response => {
-            dispatch(addHamsters(response.data));
+        }).catch((error) => {
+            if (error.response) {
+                props.setErrorCode(error.response.status);
+                props.setErrorMessage('It seems like something went wrong...'); 
+                history.push('/error');
+            }
         });
+        setAge(0);
+        setFaveFood('');
+        setImgName('');
+        setLoves('');
+        setName('');
+        props.update();
     }  
 
 

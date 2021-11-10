@@ -1,34 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { addHamsters, addWinners, addLosers, addMatch } from '../store/actions/actions';
-import axios from 'axios';
+import { useSelector } from 'react-redux';
 import Hamster from './Hamster';
 import HamsterModel from '../models/Hamster';
 import MatchModel from '../models/Match';
 import Style from './Scoreboard.module.css';
 
 const Scoreboard = (props: any) => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      axios.get('/hamsters')
-        .then(response => {
-          dispatch(addHamsters(response.data));
-        });
-      axios.get('/winners')
-        .then(response => {
-          dispatch(addWinners(response.data));
-        });
-      axios.get('/losers')
-        .then(response => {
-          dispatch(addLosers(response.data))
-        });
-      axios.get('/matches')
-        .then(response => {
-          dispatch(addMatch(response.data))
-        });
-    },[]);
-
     const hamsters = useSelector((state: any) => state.hamsters);
     const topWinners = useSelector((state: any) => state.topWinners);
     const topLosers = useSelector((state: any) => state.topLosers);
@@ -40,13 +16,21 @@ const Scoreboard = (props: any) => {
               <section>
                 <h2 className="text-center">Top winners</h2>
                 <section className="flex-wrapper column">
-                    {topWinners.map((i: HamsterModel) => <Hamster type={'list'} key={i.id} {...i} />)}
+                    {topWinners.map((i: HamsterModel) => <Hamster 
+                      update={props.update}
+                      setErrorCode={(e: string) => props.setErrorCode(e)} 
+                          setErrorMessage={(e: string) => props.setErrorMessage(e)}  
+                      type={'list'} key={i.id} {...i} />)}
                 </section>
               </section>
               <section>
                 <h2 className="text-center">Top losers</h2>
                 <section className="flex-wrapper column">
-                    {topLosers.map((i: HamsterModel) => <Hamster type={'list'} key={i.id} {...i} />)} 
+                    {topLosers.map((i: HamsterModel) => <Hamster 
+                      update={props.update}
+                      setErrorCode={(e: string) => props.setErrorCode(e)} 
+                          setErrorMessage={(e: string) => props.setErrorMessage(e)}  
+                      type={'list'} key={i.id} {...i} />)} 
                 </section>
               </section>
             </section>
@@ -60,8 +44,16 @@ const Scoreboard = (props: any) => {
                 winner = winner[0];
                 loser = loser[0];
                 return <div key={id} className="flex-wrapper">
-                        <Hamster section='history' type='winner' {...winner} />
-                        <Hamster section='history' type='loser' {...loser} />
+                        <Hamster 
+                          update={props.update}
+                          setErrorCode={(e: string) => props.setErrorCode(e)} 
+                          setErrorMessage={(e: string) => props.setErrorMessage(e)}  
+                          section='history' type='winner' {...winner} />
+                        <Hamster 
+                          update={props.update}
+                          setErrorCode={(e: string) => props.setErrorCode(e)} 
+                          setErrorMessage={(e: string) => props.setErrorMessage(e)}  
+                          section='history' type='loser' {...loser} />
                       </div>
               })} 
               </section>
