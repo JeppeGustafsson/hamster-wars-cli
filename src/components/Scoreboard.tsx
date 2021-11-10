@@ -3,12 +3,19 @@ import Hamster from './Hamster';
 import HamsterModel from '../models/Hamster';
 import MatchModel from '../models/Match';
 import Style from './Scoreboard.module.css';
+import { useEffect } from 'react';
 
 const Scoreboard = (props: any) => {
     const hamsters = useSelector((state: any) => state.hamsters);
     const topWinners = useSelector((state: any) => state.topWinners);
     const topLosers = useSelector((state: any) => state.topLosers);
     const matches = useSelector((state: any) => state.matches);
+
+    useEffect(() => {
+      setTimeout(() => {
+        props.update();
+    }, 500);
+    },[]);
     
     return (
         <section className={Style.Scoreboard}>

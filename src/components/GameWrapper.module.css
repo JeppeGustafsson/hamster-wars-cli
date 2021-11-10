@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
+    padding: 3rem 0;
     animation-duration: 0.5s;
     animation-timing-function: ease;
     animation-fill-mode: forwards;
@@ -58,6 +58,19 @@
     align-items: center;
     padding: 2rem 0;
     z-index: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .Previous {
+        padding: 3rem 1rem;
+    }
+    .Previous :global(article) {
+        width: 150px;
+        height: 100px;
+    }
+    .Previous :global(article img) {
+        height: 100px;
+    }
 }
 
 .HamsterOne {

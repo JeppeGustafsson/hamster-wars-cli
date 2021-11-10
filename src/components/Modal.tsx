@@ -14,7 +14,9 @@ const Modal = (props: any) => {
             }
         })
         props.set(false);
-        props.update();
+        setTimeout(() => {
+            props.update();
+        }, 500);
     }
 
     return (

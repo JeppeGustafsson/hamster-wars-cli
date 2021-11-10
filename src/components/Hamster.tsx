@@ -28,6 +28,11 @@ const Hamster = (props: any) => {
                 setErrorCode={(e: string) => props.setErrorCode(e)} 
                 setErrorMessage={(e: string) => props.setErrorMessage(e)} 
               /> }
+            { props.type === 'winner' || props.type === 'loser' ? 
+                <div className="text-block">
+                    <p>Wins: {props.wins}</p> 
+                    <p>Losses: {props.defeats}</p>
+                </div> : null}
             <article onClick={() => setActive(true)} className={Style.Thumb}>
                 { props.type === 'winner' ? <img className={Style.IndicatorImage} src={checkImage} alt="check" /> : null}
                 { props.type === 'loser' ? <img className={Style.IndicatorImage} src={crossImage} alt="cross" /> : null }

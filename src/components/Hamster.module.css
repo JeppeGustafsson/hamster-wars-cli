@@ -79,3 +79,38 @@
     width: 120px !important;
     height: 120px !important;
 }
+
+.HamsterWrapper :global(.text-block) {
+    position: absolute;
+    z-index: 15;
+    left: -0.5rem;
+    display: flex;
+    top: -2.5rem;
+    left: 1.5rem;
+}
+
+.HamsterWrapper :global(.text-block p) {
+    margin: 0 1rem;
+    text-align: center;
+}
+
+:global(.list-item .text-block),
+:global(.history .text-block) {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .IndicatorImage {
+        top: 10% !important;
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .HamsterWrapper :global(.text-block) {
+        left: 0.5rem;
+    }   
+    :global(.history) .IndicatorImage {
+        top: 35% !important;
+        width: 80px !important;
+        height: 80px !important;
+    } 
+}

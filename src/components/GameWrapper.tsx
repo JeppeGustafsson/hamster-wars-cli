@@ -10,8 +10,8 @@ const GameWrapper = (props: any) => {
     const allHamsterObjects: HamsterModel[] = useSelector((state: any) => state.hamsters);
     const history = useHistory();
 
-    const [winner, setWinner] = useState<HamsterModel>(allHamsterObjects[0]);
-    const [loser, setLoser] = useState<HamsterModel>(allHamsterObjects[0]);
+    const [winner, setWinner] = useState<HamsterModel | null>(null);
+    const [loser, setLoser] = useState<HamsterModel | null>(null);
     const [fadeIn, setFadeIn] = useState<boolean>(true);
     const [fadeOut, setFadeOut] = useState<string>('');
 
@@ -28,39 +28,43 @@ const GameWrapper = (props: any) => {
 
         fadeIn === true ? setFadeIn(false) : setFadeIn(true);
 
-        axios.put(`/hamsters/${winner?.id}`,
-        { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 })
-            .catch((error) => {
-                if (error.response) {
-                    props.setErrorCode(error.response.status);
-                    props.setErrorMessage('It seems like something went wrong...'); 
-                    history.push('/error');
-                }
+        if (winner !== null && loser !== null) {
+            axios.put(`/hamsters/${winner?.id}`,
+            { wins: winner?.wins + 1, defeats: winner?.defeats, games: winner?.games + 1 })
+                .catch((error) => {
+                    if (error.response) {
+                        props.setErrorCode(error.response.status);
+                        props.setErrorMessage('It seems like something went wrong...'); 
+                        history.push('/error');
+                    }
             });
-        axios.put(`/hamsters/${loser?.id}`,
-        { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 })
-            .catch((error) => {
-                if (error.response) {
-                    props.setErrorCode(error.response.status);
-                    props.setErrorMessage('It seems like something went wrong...'); 
-                    history.push('/error');
-                }
+            axios.put(`/hamsters/${loser?.id}`,
+            { wins: loser?.wins, defeats: loser?.defeats + 1, games: loser?.games + 1 })
+                .catch((error) => {
+                    if (error.response) {
+                        props.setErrorCode(error.response.status);
+                        props.setErrorMessage('It seems like something went wrong...'); 
+                        history.push('/error');
+                    }
             });
-        axios.post('/matches', { loserId: loser.id, winnerId: winner.id })
-            .catch((error) => {
-                if (error.response) {
-                    props.setErrorCode(error.response.status);
-                    props.setErrorMessage('It seems like something went wrong...'); 
-                    history.push('/error');
-                }
+            axios.post('/matches', { loserId: loser.id, winnerId: winner.id })
+                .catch((error) => {
+                    if (error.response) {
+                        props.setErrorCode(error.response.status);
+                        props.setErrorMessage('It seems like something went wrong...'); 
+                        history.push('/error');
+                    }
             });
+        }
         
-        props.update();
+        setTimeout(() => {
+            props.update();
+        }, 500);
     },[winner, loser]);
 
     return (
         <section className={Style.GameWrapper}>
-            { winner === undefined && loser === undefined ? null : 
+            { winner === null && loser === null ? null : 
             <section className={Style.Previous} style={fadeIn === true ? {animationName: 'fadeOut'} : {animationName: 'fadeIn'}}>
                 <article className={Style.PreHamster} onClick={() => handleClick(allHamsterObjects[randOne], allHamsterObjects[randTwo])}>
                     <Hamster game={true} type='winner' {...winner} />

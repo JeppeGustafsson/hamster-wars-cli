@@ -21,9 +21,22 @@
     padding: 0.5rem;
     outline: none;
     border-radius: 15px;
-    margin: 0.25px 0.2rem;
+    margin: 0.25rem 0.2rem;
     color: #fff;
     background-color: #4e9eeb;
     border: none;
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .Form {
+        padding: 1rem 2rem 1rem 1rem;
+    }
+    .Input {
+        width: 100%;
+    }
+    .Add {
+        margin: 1rem 0;
+        max-width: none;
+    }
 }

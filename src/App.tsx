@@ -46,7 +46,7 @@ function App() {
   },[update]);
 
   const updateData = () => {
-    update ? setUpdate(false) : setUpdate(true);
+    update === true ? setUpdate(false) : setUpdate(true);
   }
 
   return (
