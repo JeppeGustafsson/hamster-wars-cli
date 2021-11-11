@@ -1,7 +1,7 @@
 import Style from './Footer.module.css';
 import Wave from '../images/wave.png';
 
-const Footer = (props: any) => {
+const Footer = () => {
     
     return (
         <section className={Style.Footer}>

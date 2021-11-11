@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
+import ErrorModel from '../models/Error';
 import Style from './ErrorPage.module.css';
 
-const ErrorPage = (props: any) => {
+const ErrorPage = (props: ErrorModel) => {
     const history = useHistory();
 
     return (

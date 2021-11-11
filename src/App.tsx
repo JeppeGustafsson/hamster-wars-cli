@@ -16,7 +16,7 @@ import './App.css';
 function App() {
   const [on, setOn] = useState<boolean>(false);
   const [update, setUpdate] = useState<boolean>(false);
-  const [errorCode, setErrorCode] = useState<string>('');
+  const [errorCode, setErrorCode] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const dispatch = useDispatch();
 
@@ -61,23 +61,23 @@ function App() {
           </Route>
           <Route path="/game">
             <GameWrapper 
-              setErrorCode={(e: string) => setErrorCode(e)} 
+              setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
           </Route>
           <Route path="/gallery">
             <Form 
-              setErrorCode={(e: string) => setErrorCode(e)} 
+              setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
             <Gallery 
-              setErrorCode={(e: string) => setErrorCode(e)} 
+              setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
           </Route>
           <Route path="/scoreboard">
             <Scoreboard 
-              setErrorCode={(e: string) => setErrorCode(e)} 
+              setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
           </Route>    
