@@ -78,8 +78,18 @@ li {
 }
 
 @media screen and (max-width: 800px) {
+    .logo-wrapper {
+        margin: 0;
+    }
     .flex-wrapper {
         padding: 0 !important;
+        flex-wrap: wrap;
+    }
+    .between {
+        padding: 1rem !important;
+    }
+    p {
+        max-width: 95%;
     }
     .inner-wrapper {
         grid-template-columns: 50% 50%;
