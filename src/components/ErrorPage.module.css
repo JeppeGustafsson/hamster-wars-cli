@@ -10,7 +10,7 @@
 
 .ErrorPage :global(h1),
 .ErrorPage :global(h3) {
-    color: #fff;
+    color: #2b2b2b;
 }
 
 .ErrorPage :global(h1) {
@@ -32,7 +32,7 @@
     border-radius: 15px;
     margin: 2rem 0.2rem;
     color: #fff;
-    background-color: #2253d8;
+    background-color: #4e9eeb;
     border: none;
     cursor: pointer;
 }
