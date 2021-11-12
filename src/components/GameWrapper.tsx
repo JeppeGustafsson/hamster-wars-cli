@@ -54,9 +54,10 @@ const GameWrapper = (props: any) => {
                         history.push('/error');
                     }
             });
-            setRandOne(Math.floor(Math.random() * allHamsterObjects?.length));
-            setRandTwo(Math.floor(Math.random() * allHamsterObjects?.length));
         }
+
+        setRandOne(Math.floor(Math.random() * allHamsterObjects?.length));
+        setRandTwo(Math.floor(Math.random() * allHamsterObjects?.length));
         
         setTimeout(() => {
             props.update();

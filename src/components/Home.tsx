@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import hamsterModel from '../models/Hamster';
 import Hamster from '../components/Hamster';
@@ -7,7 +7,11 @@ import Style from './Home.module.css';
 
 const Home = (props: any) => {
     const hamsters: hamsterModel[] = useSelector((state: any) => state.cutest);
-    const rand: number = Math.floor(Math.random() * hamsters.length);
+    const [rand, setRand] = useState<number>(Math.floor(Math.random() * hamsters.length))
+
+    useEffect(() => {
+        setRand(Math.floor(Math.random() * hamsters.length));
+    }, [])
 
     const randomCutestHamster: hamsterModel = {
         id: hamsters[rand]?.id,
