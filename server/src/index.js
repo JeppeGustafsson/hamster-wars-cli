@@ -43,6 +43,10 @@ app.use(GetMatches);
 app.use(AddMatch);
 app.use(GetOneMatch);
 app.use(express.static('build'));
+app.use('/game', express.static('build'));
+app.use('/gallery', express.static('build'));
+app.use('/scoreboard', express.static('build'));
+app.use('/error', express.static('build'));
 app.use(express.static('publicImageDirectory'));
 
 //Start server
