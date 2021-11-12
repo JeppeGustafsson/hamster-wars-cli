@@ -2,9 +2,10 @@ import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import hamsterModel from '../models/Hamster';
 import Hamster from '../components/Hamster';
+import HamsterModel from '../models/Hamster';
 import Style from './Home.module.css';
 
-const Home = () => {
+const Home = (props: any) => {
     const hamsters: hamsterModel[] = useSelector((state: any) => state.cutest);
     const rand: number = Math.floor(Math.random() * hamsters.length);
 
@@ -20,6 +21,8 @@ const Home = () => {
         age: hamsters[rand]?.age
     }
 
+    console.log(randomCutestHamster)
+
     return (
         <section className={Style.Home}>
             <div className="logo-wrapper">
@@ -30,6 +33,8 @@ const Home = () => {
             <article>
                 <h2>Top rated hamster!</h2>
                 <Hamster 
+                    setData={(e: HamsterModel) => props.setModalData(e)}
+                    setActive={(e: boolean) => props.setActive(e)}
                     {...randomCutestHamster}
                 />
             </article>

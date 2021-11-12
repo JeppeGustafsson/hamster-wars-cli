@@ -8,7 +8,8 @@ const Gallery = (props: any) => {
 
     return (
         <section className="inner-wrapper">
-              {all.map((i: hamsterModel) => <Hamster setErrorCode={(e: string) => props.setErrorCode(e)} 
+              {all.map((i: hamsterModel) => <Hamster   setData={(e: hamsterModel) => props.setModalData(e)}
+                            setActive={(e: boolean) => props.setActive(e)} setErrorCode={(e: string) => props.setErrorCode(e)} 
                 setErrorMessage={(e: string) => props.setErrorMessage(e)}  update={props.update} key={i.id} {...i} />)} 
         </section>
     )

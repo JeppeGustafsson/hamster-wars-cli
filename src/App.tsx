@@ -11,10 +11,24 @@ import Gallery from './components/Gallery';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import ErrorPage from './components/ErrorPage';
+import Modal from './components/Modal';
 import './App.css';
+import HamsterModel from './models/Hamster';
 
 function App() {
   const [on, setOn] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<HamsterModel>({
+    id: '',
+    name: '',
+    favFood: '',
+    imgName: '',
+    loves: '',
+    age: 0,
+    wins: 0,
+    defeats: 0,
+    games: 0
+  });
   const [update, setUpdate] = useState<boolean>(false);
   const [errorCode, setErrorCode] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -24,7 +38,6 @@ function App() {
     axios.get('/hamsters/cutest')
     .then(response => {
       dispatch(addCutest(response.data));
-      console.log(response.data)
     });
     axios.get('/hamsters')
     .then(response => {
@@ -42,8 +55,9 @@ function App() {
       .then(response => {
         dispatch(addMatch(response.data))
       });
-      console.log('update success')
+      console.log('updated!')
   },[update]);
+
   const updateData = () => {
     update === true ? setUpdate(false) : setUpdate(true);
   }
@@ -54,10 +68,29 @@ function App() {
         <TopNavigation isOn={on} menuState={(payload: boolean): void => setOn(payload)} />
       </header>
       <div className={on ? 'overlay on' : 'overlay'} />
+      <Modal 
+        id={modalData.id}
+        name={modalData.name}
+        favFood={modalData.favFood}
+        imgName={modalData.imgName}
+        loves={modalData.loves}
+        age={modalData.age}
+        wins={modalData.wins}
+        defeats={modalData.defeats}
+        games={modalData.games}
+        active={active}
+        set={(e: boolean) => setActive(e)}
+        update={updateData}
+        setErrorCode={(e: number) => setErrorCode(e)} 
+        setErrorMessage={(e: string) => setErrorMessage(e)} 
+      /> 
       <main>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home 
+              setModalData={(e: HamsterModel) => setModalData(e)}
+              setActive={(e: boolean) => setActive(e)}
+            />
           </Route>
           <Route path="/game">
             <GameWrapper 
@@ -71,12 +104,16 @@ function App() {
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
             <Gallery 
+              setModalData={(e: HamsterModel) => setModalData(e)}
+              setActive={(e: boolean) => setActive(e)}
               setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />
           </Route>
           <Route path="/scoreboard">
             <Scoreboard 
+              setModalData={(e: HamsterModel) => setModalData(e)}
+              setActive={(e: boolean) => setActive(e)}
               setErrorCode={(e: number) => setErrorCode(e)} 
               setErrorMessage={(e: string) => setErrorMessage(e)} 
               update={updateData} />

@@ -7,16 +7,15 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const GameWrapper = (props: any) => {
-    const allHamsterObjects: HamsterModel[] = useSelector((state: any) => state.hamsters);
+    var allHamsterObjects: HamsterModel[] = useSelector((state: any) => state.hamsters);
     const history = useHistory();
 
     const [winner, setWinner] = useState<HamsterModel | null>(null);
     const [loser, setLoser] = useState<HamsterModel | null>(null);
     const [fadeIn, setFadeIn] = useState<boolean>(true);
     const [fadeOut, setFadeOut] = useState<string>('');
-
-    const randOne: number = Math.floor(Math.random() * allHamsterObjects?.length);
-    const randTwo: number = Math.floor(Math.random() * allHamsterObjects?.length);
+    const [randOne, setRandOne] = useState<number>(Math.floor(Math.random() * allHamsterObjects?.length));
+    const [randTwo, setRandTwo] = useState<number>(Math.floor(Math.random() * allHamsterObjects?.length));
 
     const handleClick = useCallback((a: HamsterModel, b: HamsterModel) => {
         setFadeOut(' out');
@@ -55,6 +54,8 @@ const GameWrapper = (props: any) => {
                         history.push('/error');
                     }
             });
+            setRandOne(Math.floor(Math.random() * allHamsterObjects?.length));
+            setRandTwo(Math.floor(Math.random() * allHamsterObjects?.length));
         }
         
         setTimeout(() => {

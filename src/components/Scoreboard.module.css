@@ -3,3 +3,23 @@
     position: relative;
     padding-bottom: 4rem;
 }
+
+.Remove {
+    padding: 0.3rem 0.5rem;
+    border: none;
+    outline: none;
+    font-weight: lighter;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: red;
+    color: #fff;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+
+.MatchWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,9 +1,10 @@
 import HamsterModel from "../../models/Hamster";
+import Match from "../../models/Match";
 
-export const addMatch = (hamster: HamsterModel[]) => {
+export const addMatch = (match: Match[]) => {
     return {
         type: 'ADD_MATCH',
-        payload: hamster
+        payload: match
     }
 }
 

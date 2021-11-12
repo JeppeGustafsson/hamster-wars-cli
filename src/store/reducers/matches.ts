@@ -3,7 +3,7 @@
 const matches = (state = [], action: any) => {
     switch(action.type) {
         case 'ADD_MATCH':
-            return [...state, action.payload];
+            return state = action.payload;
         default:
             return state;
     }

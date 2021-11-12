@@ -22,11 +22,22 @@
 .InnerArticle {
     max-width: 450px;
     width: 100%;
-    min-height: 350px;
+    height: 600px;
     background-color: #fff;
     position: relative;
     border-radius: 1rem;
     overflow: hidden;
+}
+
+.InnerArticle :global(img) {
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.InnerArticle :global(ul) {
+    overflow: auto;
 }
 
 .Close {
